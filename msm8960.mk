@@ -20,8 +20,11 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/languages_full.mk)
 DEVICE_PACKAGE_OVERLAYS += device/htc/msm8960-common/overlay
 
 # Boot ramdisk setup
-PRODUCT_COPY_FILES += \
-    device/htc/msm8960-common/ramdisk/init.qcom.sh:root/init.qcom.sh
+PRODUCT_PACKAGES += \
+    init.qcom.sh \
+    init.qcom.usb.rc \
+    init.qcom.rc \
+    ueventd.qcom.rc
 
 # Qualcomm scripts
 PRODUCT_COPY_FILES += \
@@ -120,6 +123,14 @@ PRODUCT_PACKAGES += \
     make_ext4fs \
     setup_fs
 
+# Recovery
+PRODUCT_PACKAGES += \
+    init.recovery.qcom.rc \
+    choice_fn \
+    power_test \
+    offmode_charging \
+    detect_key
+
 # GPS config
 PRODUCT_COPY_FILES += \
     device/htc/msm8960-common/configs/gps.conf:system/etc/gps.conf
@@ -143,7 +154,6 @@ PRODUCT_PROPERTY_OVERRIDES += \
     com.qc.hardware=true \
     debug.composition.type=dyn \
     debug.egl.hw=1 \
-    debug.mdpcomp.maxlayer=3 \
     debug.mdpcomp.logs=0 \
     debug.sf.hw=1 \
     dev.pm.dyn_samplingrate=1 \
@@ -153,11 +163,13 @@ PRODUCT_PROPERTY_OVERRIDES += \
     persist.audio.handset.mic=digital \
     persist.audio.speaker.location=high \
     persist.gps.qmienabled=true \
+    persist.hwc.mdpcomp.enable=true \
     persist.thermal.monitor=true \
     ro.baseband.arch=msm \
     ro.opengles.version=131072 \
     ro.product.wireless=WCN3660 \
     ro.qc.sdk.audio.fluencetype=fluence \
     ro.qualcomm.bt.hci_transport=smd \
+    ro.telephony.ril_class=HTC8960RIL \
     ro.use_data_netmgrd=true \
     wifi.interface=wlan0
