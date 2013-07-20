@@ -76,10 +76,6 @@ PRODUCT_PACKAGES += \
 PRODUCT_PACKAGES += \
     power.msm8960
 
-# HDMI
-PRODUCT_PACKAGES += \
-    hdmid
-
 # QCOM rngd
 PRODUCT_PACKAGES += \
     qrngd
